@@ -1,4 +1,12 @@
 
+using Contatos.Application.Interfaces;
+using Contatos.Application.Services;
+using Contatos.Core.Domain.Interfaces;
+using Contatos.Infra.Data.Contexts;
+using Contatos.Infra.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace Contatos.Api
 {
     public class Program
@@ -14,14 +22,19 @@ namespace Contatos.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddMemoryCache();
+            builder.Services.AddScoped<IServiceCache, MemoryCacheService>();
+            builder.Services.AddTransient<IContatoRepository, ContatoRepository>();
+
+            builder.Services.AddDbContext<ContatosDbContext>(options =>
+                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
 
             app.UseHttpsRedirection();
 
