@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Core", "Contatos.Core\Contatos.Core.csproj", "{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Application", "Contatos.Application\Contatos.Application.csproj", "{A960B64C-B403-4E34-857F-F7319DEB91E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Api", "Contatos.Api\Contatos.Api.csproj", "{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Test", "Contatos.Integracao.Test\Contatos.Test.csproj", "{5816EFFD-F279-42E0-9905-CBD42B08E770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5816EFFD-F279-42E0-9905-CBD42B08E770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5816EFFD-F279-42E0-9905-CBD42B08E770}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5816EFFD-F279-42E0-9905-CBD42B08E770}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5816EFFD-F279-42E0-9905-CBD42B08E770}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
