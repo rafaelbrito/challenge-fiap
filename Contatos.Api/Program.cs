@@ -1,15 +1,15 @@
-
 using Contatos.Application.Interfaces;
 using Contatos.Application.Services;
 using Contatos.Core.Domain.Interfaces;
 using Contatos.Infra.Data.Contexts;
 using Contatos.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Contatos.Application.UseCases.Contatos;
 
 
 namespace Contatos.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -18,7 +18,6 @@ namespace Contatos.Api
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -26,15 +25,21 @@ namespace Contatos.Api
             builder.Services.AddScoped<IServiceCache, MemoryCacheService>();
             builder.Services.AddTransient<IContatoRepository, ContatoRepository>();
 
+            builder.Services.AddTransient<CreateContato>();
+            builder.Services.AddTransient<GetContato>();
+            builder.Services.AddTransient<UpdateContato>();
+            builder.Services.AddTransient<DeleteContato>();
+
             builder.Services.AddDbContext<ContatosDbContext>(options =>
                      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
-
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             app.UseHttpsRedirection();
 

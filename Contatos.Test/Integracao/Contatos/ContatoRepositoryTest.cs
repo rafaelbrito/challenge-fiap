@@ -1,5 +1,4 @@
 ﻿using Contatos.Core.Domain.Entities;
-using Contatos.Infra.Data.Contexts;
 using Contatos.Infra.Data.Repositories;
 
 namespace Contatos.Test.Integracao.Contatos
@@ -41,10 +40,9 @@ namespace Contatos.Test.Integracao.Contatos
 
             var contato = new Contato("Maria Souza", "maria.souza@dominio.com", "11987654321");
             await _repository.AddAsync(contato);
-
             var result = await _repository.DeleteAsync(contato.Id);
 
-            Assert.Equal(1, result);  
+            Assert.True(result);  
             var deletedContato = await _repository.GetByIdAsync(contato.Id);
             Assert.Null(deletedContato);  
         }

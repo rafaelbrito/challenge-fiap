@@ -6,7 +6,7 @@ namespace Contatos.Core.Exceptions
     {
         private const string Pattern = @"^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z]{2,}$";
 
-        private const string DefaultErrorMessage = "E-mail inválido";
+        private const string DefaultErrorMessage = "O formato do e-mail é inválido.";
 
         private InvalidEmailException(string? message = DefaultErrorMessage) : base(message)
         { }

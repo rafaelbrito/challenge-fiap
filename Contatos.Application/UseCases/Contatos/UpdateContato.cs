@@ -1,6 +1,5 @@
 ﻿using Contatos.Application.DTOs;
 using Contatos.Application.Interfaces;
-using Contatos.Application.Services;
 using Contatos.Core.Domain.Interfaces;
 
 namespace Contatos.Application.UseCases.Contatos
@@ -17,17 +16,27 @@ namespace Contatos.Application.UseCases.Contatos
 
         public async Task<ContatoDto> UpdateContatoAsync(int id, ContatoInputDto input)
         {
-            // Obtém o contato do banco de dados
             var contato = await _contatoRepository.GetByIdAsync(id);
 
             if (contato == null)
             {
                 throw new KeyNotFoundException($"Contato com ID {id} não encontrado.");
             }
+           
+            if (!string.IsNullOrEmpty(input.Nome))
+            {
+                contato.Nome = input.Nome;
+            }
 
-            contato.Nome = input.Nome;
-            contato.Email = input.Email;
-            contato.Telefone = input.Telefone;
+            if (!string.IsNullOrEmpty(input.Email))
+            {
+                contato.Email = input.Email;
+            }
+
+            if (!string.IsNullOrEmpty(input.Telefone))
+            {
+                contato.Telefone = input.Telefone;
+            }
 
             await _contatoRepository.UpdateAsync(contato);
 
@@ -36,7 +45,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = contato.Id,
                 Nome = contato.Nome,
                 Email = contato.Email,
-                Telefone = contato.Telefone
+                Numero = contato.Telefone.Numero,
+                Ddd = contato.Telefone.Ddd
             };
 
             var cacheKey = "contatos_lista";

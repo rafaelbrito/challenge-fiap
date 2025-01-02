@@ -10,16 +10,10 @@ namespace Contatos.Test.Unitario.Contatos
         [Trait("ValueObject", "Email")]
         public void Email_DeveSerCriadoComSucesso_QuandoEnderecoValido()
         {
-            // Arrange
             var endereco = "exemplo@dominio.com";
 
-            // Act
-            var email = new Email(endereco);
-
-            // Assert
-            Assert.Equal("exemplo@dominio.com", email.Address);
+            InvalidEmailException.ThrowIfInvalid(endereco);
         }
-
 
         [Fact]
         [Trait("Category", "ValueObject")]
@@ -28,54 +22,8 @@ namespace Contatos.Test.Unitario.Contatos
         {
             var enderecoInvalido = "endereco_invalido@com";
 
-            var exception = Assert.Throws<InvalidEmailException>(() => new Email(enderecoInvalido));
-            Assert.Equal("E-mail inválido", exception.Message);
-        }
-
-        [Fact]
-        [Trait("Category", "ValueObject")]
-        [Trait("ValueObject", "Email")]
-        public void Email_DeveSerIgual_QuandoEnderecosForemIguais()
-        {
-            var email1 = new Email("exemplo@dominio.com");
-            var email2 = new Email("exemplo@dominio.com");
-
-            Assert.True(email1.Equals(email2));
-        }
-
-        [Fact]
-        [Trait("Category", "ValueObject")]
-        [Trait("ValueObject", "Email")]
-        public void Email_DeveSerDiferente_QuandoEnderecosForemDiferentes()
-        {
-            var email1 = new Email("exemplo@dominio.com");
-            var email2 = new Email("diferente@dominio.com");
-
-            Assert.False(email1.Equals(email2));
-        }
-
-        [Fact]
-        [Trait("Category", "ValueObject")]
-        [Trait("ValueObject", "Email")]
-        public void Email_DeveSerConvertidoParaStringCorretamente()
-        {
-            var email = new Email("exemplo@dominio.com");
-
-            string endereco = email;
-
-            Assert.Equal("exemplo@dominio.com", endereco);
-        }
-
-        [Fact]
-        [Trait("Category", "ValueObject")]
-        [Trait("ValueObject", "Email")]
-        public void String_DeveSerConvertidoParaEmailCorretamente()
-        {
-            string endereco = "exemplo@dominio.com";
-
-            Email email = endereco;
-
-            Assert.Equal("exemplo@dominio.com", email.Address);
+            var exception = Assert.Throws<InvalidEmailException>(() => InvalidEmailException.ThrowIfInvalid(enderecoInvalido));
+            Assert.Equal("O formato do e-mail é inválido.", exception.Message);
         }
     }
 }

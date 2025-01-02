@@ -17,7 +17,7 @@ namespace Contatos.Application.UseCases.Contatos
         }
         public async Task<ContatoDto> CreateAsync(ContatoInputDto input)
         {
-            var contato = new Contato(input.Nome, input.Email, input.Telefone);
+            var contato = new Contato(input.Nome!, input.Email!, input.Telefone!);
 
             var contatoAdicionado = await _contatoRepository.AddAsync(contato);
 
@@ -26,7 +26,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = contatoAdicionado.Id,
                 Nome = contatoAdicionado.Nome,
                 Email = contatoAdicionado.Email,
-                Telefone = contatoAdicionado.Telefone
+                Numero = contatoAdicionado.Telefone.Numero,
+                Ddd = contatoAdicionado.Telefone.Ddd
             };
 
             var cacheKey = "contatos_lista";

@@ -13,18 +13,18 @@ namespace Contatos.Application.UseCases.Contatos
             _serviceCache = serviceCache;
         }
 
-        public async Task<int> DeleteContatoAsync(int id)
+        public async Task<bool> DeleteContatoAsync(int id)
         {
             var result = await _contatoRepository.DeleteAsync(id);
 
-            if (result > 0)
+            if (result)
             {
                 var cacheKey = "contatos_lista";
                 _serviceCache.Remove(cacheKey);
 
                 return result;
             }
-            return 0;
+            return result;
         }
     }
 }

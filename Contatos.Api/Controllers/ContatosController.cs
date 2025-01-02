@@ -105,7 +105,7 @@ namespace Contatos.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _deleteContato.DeleteContatoAsync(id);
-            if (result > 0)
+            if (result)
             {
                 return NoContent();
             }

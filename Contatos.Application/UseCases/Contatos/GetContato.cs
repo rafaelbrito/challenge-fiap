@@ -1,6 +1,5 @@
 ﻿using Contatos.Application.DTOs;
 using Contatos.Application.Interfaces;
-using Contatos.Application.Services;
 using Contatos.Core.Domain.Interfaces;
 
 namespace Contatos.Application.UseCases.Contatos
@@ -33,7 +32,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
                 Email = c.Email,
-                Telefone = c.Telefone.ToString()
+                Numero = c.Telefone.Numero,
+                Ddd = c.Telefone.Ddd
             }).ToList();
 
             _serviceCache.Set(cacheKey, contatos, TimeSpan.FromMinutes(10));
@@ -44,13 +44,16 @@ namespace Contatos.Application.UseCases.Contatos
         public async Task<ContatoDto?> GetContatoByIdAsync(int id)
         {
             var contato = await _contatoRepository.GetByIdAsync(id);
+            if (contato == null)
+                throw new KeyNotFoundException($"Contato com ID {id} não encontrado.");
 
             return new ContatoDto
             {
                 Id = contato.Id,
                 Nome = contato.Nome.ToString(),
                 Email = contato.Email,
-                Telefone = contato.Telefone.ToString()
+                Numero = contato.Telefone.Numero,
+                Ddd = contato.Telefone.Ddd
             };
         }
 
@@ -63,7 +66,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
                 Email = c.Email,
-                Telefone = c.Telefone.ToString()
+                Numero = c.Telefone.Numero,
+                Ddd = c.Telefone.Ddd
             });
         }
 
@@ -76,7 +80,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
                 Email = c.Email,
-                Telefone = c.Telefone.ToString()
+                Numero = c.Telefone.Numero,
+                Ddd = c.Telefone.Ddd
             });
         }
 
@@ -89,7 +94,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
                 Email = c.Email,
-                Telefone = c.Telefone.ToString()
+                Numero = c.Telefone.Numero,
+                Ddd = c.Telefone.Ddd
             });
         }
 
@@ -102,7 +108,8 @@ namespace Contatos.Application.UseCases.Contatos
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
                 Email = c.Email,
-                Telefone = c.Telefone.ToString()
+                Numero = c.Telefone.Numero,
+                Ddd = c.Telefone.Ddd
             });
         }
 

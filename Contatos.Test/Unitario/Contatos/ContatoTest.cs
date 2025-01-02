@@ -49,7 +49,7 @@ namespace Contatos.Test.Unitario.Contatos
             var telefone = "11987654321";
 
             var exception = Assert.Throws<InvalidEmailException>(() => new Contato(nome, emailInvalido, telefone));
-            Assert.Equal("E-mail inválido", exception.Message);
+            Assert.Equal("O formato do e-mail é inválido.", exception.Message);
         }
 
         [Fact]
