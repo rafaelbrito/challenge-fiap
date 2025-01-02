@@ -26,7 +26,7 @@ namespace Contatos.Api.Controllers
 
         // POST: api/v1/contatos
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ContatoInputDto input)
+        public async Task<IActionResult> Create([FromBody] CreateContatoInput input)
         {
             var contato = await _createContato.CreateAsync(input);
             return CreatedAtAction(nameof(GetById), new { id = contato.Id }, contato);
@@ -87,7 +87,7 @@ namespace Contatos.Api.Controllers
 
         // PUT: api/v1/contatos/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ContatoInputDto input)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateContatoInput input)
         {
             try
             {

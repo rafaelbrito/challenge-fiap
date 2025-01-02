@@ -15,7 +15,7 @@ namespace Contatos.Application.UseCases.Contatos
             _serviceCache = serviceCache;
 
         }
-        public async Task<ContatoDto> CreateAsync(ContatoInputDto input)
+        public async Task<ContatoDto> CreateAsync(CreateContatoInput input)
         {
             var contato = new Contato(input.Nome!, input.Email!, input.Telefone!);
 

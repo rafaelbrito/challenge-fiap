@@ -1,6 +1,6 @@
 ﻿namespace Contatos.Application.DTOs
 {
-    public record ContatoInputDto
+    public record UpdateContatoInput
     {
         public string? Nome { get; set; }
         public string? Email { get; set; }

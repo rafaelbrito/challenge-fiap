@@ -14,7 +14,7 @@ namespace Contatos.Application.UseCases.Contatos
             _serviceCache = serviceCache;
         }
 
-        public async Task<ContatoDto> UpdateContatoAsync(int id, ContatoInputDto input)
+        public async Task<ContatoDto> UpdateContatoAsync(int id, UpdateContatoInput input)
         {
             var contato = await _contatoRepository.GetByIdAsync(id);
 
