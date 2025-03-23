@@ -13,6 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Api", "Contatos.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Test", "Contatos.Test\Contatos.Test.csproj", "{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5377FF5A-DFE9-49FD-B6A7-77CEBB4CD202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1AFFE957-9B55-47FD-B851-8F74A81A7BB7}"
+	ProjectSection(SolutionItems) = preProject
+		ci.yml = ci.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +49,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1AFFE957-9B55-47FD-B851-8F74A81A7BB7} = {5377FF5A-DFE9-49FD-B6A7-77CEBB4CD202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3A0878D-BD2C-4E54-AABB-A6515D12925A}
