@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\..\src\Contatos.Core\Contatos.Core.csproj" />
+    <ProjectReference Include="..\..\src\Contatos.Infra\Contatos.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contatos.Core\Contatos.Core.csproj" />
-    <ProjectReference Include="..\Contatos.Infra\Contatos.Infra.csproj" />
+    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>
