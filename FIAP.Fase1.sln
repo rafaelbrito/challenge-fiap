@@ -10,13 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", "{75B857D1-0EA8-4E95-8E36-83229D1725DD}"
-	ProjectSection(SolutionItems) = preProject
-		Monitoring\docker-compose.yml = Monitoring\docker-compose.yml
-		Dockerfile = Dockerfile
-		Monitoring\prometheus.yml = Monitoring\prometheus.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Api", "src\Contatos.Api\Contatos.Api.csproj", "{7E628320-012A-4EAA-A17B-027DE4F6275C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Application", "src\Contatos.Application\Contatos.Application.csproj", "{552CCC21-B17B-4B88-818D-D0B253FD3BD5}"

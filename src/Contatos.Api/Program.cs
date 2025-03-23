@@ -18,12 +18,7 @@ namespace Contatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.WebHost.ConfigureKestrel(serverOptions =>
-            {
-                serverOptions.Listen(IPAddress.Loopback, 44383); 
-            });
-            // Add services to the container.
-
+           
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -53,17 +48,8 @@ namespace Contatos.Api
 
             builder.Services.AddDbContext<ContatosDbContext>(options =>
                      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            
-            
-            var apiCallCounter = Metrics.CreateCounter("api_calls_total", "Número total de chamadas de API");
-
 
             var app = builder.Build();
-            app.Use(async (context, next) =>
-            {
-                apiCallCounter.Inc();  
-                await next.Invoke();
-            });
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             if (app.Environment.IsDevelopment())
