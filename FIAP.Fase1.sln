@@ -3,15 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Core", "Contatos.Core\Contatos.Core.csproj", "{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Core", "Contatos.Core\Contatos.Core.csproj", "{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Infra", "Contatos.Infra\Contatos.Infra.csproj", "{E3B15059-9DBC-4159-B9BD-8952E0817556}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Infra", "Contatos.Infra\Contatos.Infra.csproj", "{E3B15059-9DBC-4159-B9BD-8952E0817556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Application", "Contatos.Application\Contatos.Application.csproj", "{A960B64C-B403-4E34-857F-F7319DEB91E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Application", "Contatos.Application\Contatos.Application.csproj", "{A960B64C-B403-4E34-857F-F7319DEB91E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Api", "Contatos.Api\Contatos.Api.csproj", "{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Api", "Contatos.Api\Contatos.Api.csproj", "{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Test", "Contatos.Test\Contatos.Test.csproj", "{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Test", "Contatos.Test\Contatos.Test.csproj", "{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{725EDFA9-20CF-4CCD-8813-CF391194F2C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{98D56CC4-611C-4831-A5A2-BBEEE6F34549}"
+	ProjectSection(SolutionItems) = preProject
+		ci.yaml = ci.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +49,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98D56CC4-611C-4831-A5A2-BBEEE6F34549} = {725EDFA9-20CF-4CCD-8813-CF391194F2C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3A0878D-BD2C-4E54-AABB-A6515D12925A}
 	EndGlobalSection
 EndGlobal
