@@ -6,6 +6,9 @@ using Contatos.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Contatos.Application.UseCases.Contatos;
 using Microsoft.OpenApi.Models;
+using Prometheus;
+using System.Net;
+
 
 
 namespace Contatos.Api
@@ -15,7 +18,10 @@ namespace Contatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.WebHost.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.Listen(IPAddress.Loopback, 44383); 
+            });
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -47,8 +53,17 @@ namespace Contatos.Api
 
             builder.Services.AddDbContext<ContatosDbContext>(options =>
                      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            
+            
+            var apiCallCounter = Metrics.CreateCounter("api_calls_total", "Número total de chamadas de API");
+
 
             var app = builder.Build();
+            app.Use(async (context, next) =>
+            {
+                apiCallCounter.Inc();  
+                await next.Invoke();
+            });
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             if (app.Environment.IsDevelopment())
@@ -56,7 +71,8 @@ namespace Contatos.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseRouting();
+            app.MapMetrics(); 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

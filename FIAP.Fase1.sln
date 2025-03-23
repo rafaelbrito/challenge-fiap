@@ -3,16 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Core", "Contatos.Core\Contatos.Core.csproj", "{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Infra", "Contatos.Infra\Contatos.Infra.csproj", "{E3B15059-9DBC-4159-B9BD-8952E0817556}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Application", "Contatos.Application\Contatos.Application.csproj", "{A960B64C-B403-4E34-857F-F7319DEB91E6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Api", "Contatos.Api\Contatos.Api.csproj", "{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Test", "Contatos.Test\Contatos.Test.csproj", "{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5377FF5A-DFE9-49FD-B6A7-77CEBB4CD202}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1AFFE957-9B55-47FD-B851-8F74A81A7BB7}"
@@ -20,32 +10,49 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", "{75B857D1-0EA8-4E95-8E36-83229D1725DD}"
+	ProjectSection(SolutionItems) = preProject
+		Monitoring\docker-compose.yml = Monitoring\docker-compose.yml
+		Dockerfile = Dockerfile
+		Monitoring\prometheus.yml = Monitoring\prometheus.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Api", "src\Contatos.Api\Contatos.Api.csproj", "{7E628320-012A-4EAA-A17B-027DE4F6275C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Application", "src\Contatos.Application\Contatos.Application.csproj", "{552CCC21-B17B-4B88-818D-D0B253FD3BD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Core", "src\Contatos.Core\Contatos.Core.csproj", "{58CE5DF6-82C2-4F1C-ABB3-3AE5CB835874}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Infra", "src\Contatos.Infra\Contatos.Infra.csproj", "{85610109-2212-43D6-A240-1E58187BD241}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Test", "test\Contatos.Test\Contatos.Test.csproj", "{171B0DEF-8851-4DEE-BF02-F4458A8B899D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E4605AC-C80F-4F9C-91AC-F590D8FF7811}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3B15059-9DBC-4159-B9BD-8952E0817556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3B15059-9DBC-4159-B9BD-8952E0817556}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3B15059-9DBC-4159-B9BD-8952E0817556}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3B15059-9DBC-4159-B9BD-8952E0817556}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A960B64C-B403-4E34-857F-F7319DEB91E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A960B64C-B403-4E34-857F-F7319DEB91E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A960B64C-B403-4E34-857F-F7319DEB91E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A960B64C-B403-4E34-857F-F7319DEB91E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D20326F4-6D80-4704-9DA6-7F0D3CFBBFA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2F49F5A-9FBA-44A5-A9D8-34866843AB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E628320-012A-4EAA-A17B-027DE4F6275C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E628320-012A-4EAA-A17B-027DE4F6275C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E628320-012A-4EAA-A17B-027DE4F6275C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E628320-012A-4EAA-A17B-027DE4F6275C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552CCC21-B17B-4B88-818D-D0B253FD3BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552CCC21-B17B-4B88-818D-D0B253FD3BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552CCC21-B17B-4B88-818D-D0B253FD3BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552CCC21-B17B-4B88-818D-D0B253FD3BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58CE5DF6-82C2-4F1C-ABB3-3AE5CB835874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58CE5DF6-82C2-4F1C-ABB3-3AE5CB835874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58CE5DF6-82C2-4F1C-ABB3-3AE5CB835874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58CE5DF6-82C2-4F1C-ABB3-3AE5CB835874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85610109-2212-43D6-A240-1E58187BD241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85610109-2212-43D6-A240-1E58187BD241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85610109-2212-43D6-A240-1E58187BD241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85610109-2212-43D6-A240-1E58187BD241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
