@@ -1,5 +1,4 @@
 ﻿using Contatos.Core.Domain.Entities;
-using Contatos.Core.Domain.Entities.ValueObjetcts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Contatos.Infra.Data.Contexts
