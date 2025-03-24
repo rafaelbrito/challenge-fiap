@@ -58,6 +58,7 @@ namespace Contatos.Api
                 app.UseSwaggerUI();
             }
             app.UseRouting();
+            app.UseHttpMetrics();
             app.MapMetrics(); 
             app.UseHttpsRedirection();
 
