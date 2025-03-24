@@ -9,7 +9,7 @@ services:
     volumes:
       - /mnt/c/Repositorio/tech-challenge/src/Contatos.Api:/app
     working_dir: /app
-    command: ["dotnet", "Contatos.Api.dll"]  # Comando para rodar a aplicação .NET
+    command: ["dotnet", "Contatos.Api.dll"]  
     networks:
       - monitoring_net
     restart: always
