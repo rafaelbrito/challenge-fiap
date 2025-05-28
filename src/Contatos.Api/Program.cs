@@ -1,5 +1,3 @@
-using Contatos.Application.Interfaces;
-using Contatos.Application.Services;
 using Contatos.Core.Domain.Interfaces;
 using Contatos.Infra.Data.Contexts;
 using Contatos.Infra.Data.Repositories;
@@ -8,6 +6,10 @@ using Contatos.Application.UseCases.Contatos;
 using Microsoft.OpenApi.Models;
 using Prometheus;
 using System.Net;
+using Contatos.Infra.Services;
+using Contatos.Core.Interfaces;
+using MassTransit;
+using Contatos.Message.Messages;
 
 
 
@@ -18,7 +20,7 @@ namespace Contatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-           
+            builder.WebHost.UseUrls("http://localhost:5039");
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -38,7 +40,7 @@ namespace Contatos.Api
             });
 
             builder.Services.AddMemoryCache();
-            builder.Services.AddScoped<IServiceCache, MemoryCacheService>();
+            builder.Services.AddTransient<IServiceCache, MemoryCacheService>();
             builder.Services.AddTransient<IContatoRepository, ContatoRepository>();
 
             builder.Services.AddTransient<CreateContato>();
@@ -49,18 +51,27 @@ namespace Contatos.Api
             builder.Services.AddDbContext<ContatosDbContext>(options =>
                      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host("localhost", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                });
+            });
+
             var app = builder.Build();
+            app.UseHttpMetrics();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             app.UseRouting();
-            app.UseHttpMetrics();
-            app.MapMetrics(); 
-            app.UseHttpsRedirection();
+            app.MapMetrics();
 
             app.UseAuthorization();
 

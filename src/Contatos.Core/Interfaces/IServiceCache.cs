@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-
-namespace Contatos.Application.Interfaces
+﻿namespace Contatos.Core.Interfaces
 {
     public interface IServiceCache
     {

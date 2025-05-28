@@ -1,7 +1,7 @@
 ﻿using Contatos.Application.DTOs;
-using Contatos.Application.Interfaces;
 using Contatos.Core.Domain.Entities;
 using Contatos.Core.Domain.Interfaces;
+using Contatos.Core.Interfaces;
 
 namespace Contatos.Application.UseCases.Contatos
 {

@@ -1,6 +1,6 @@
 ﻿using Contatos.Application.DTOs;
-using Contatos.Application.Interfaces;
 using Contatos.Core.Domain.Interfaces;
+using Contatos.Core.Interfaces;
 
 namespace Contatos.Application.UseCases.Contatos
 {
@@ -16,18 +16,18 @@ namespace Contatos.Application.UseCases.Contatos
 
         }
 
-        public async Task<IEnumerable<ContatoDto?>> GetAllContatosAsync()
+        public async Task<IEnumerable<ContatoDto>> GetAllContatosAsync()
         {
-            var cacheKey = "contatos_lista";
+            //var cacheKey = "contatos_lista";
 
-            if (_serviceCache.TryGetValue(cacheKey, out IEnumerable<ContatoDto> contatos))
-            {
-                return contatos;
-            }
+            //if (_serviceCache.TryGetValue(cacheKey, out IEnumerable<ContatoDto> contatos))
+            //{
+            //    return contatos;
+            //}
 
             var contatosDoBanco = await _contatoRepository.GetAllAsync();
 
-            contatos = contatosDoBanco.Select(c => new ContatoDto
+            var contatos = contatosDoBanco.Select(c => new ContatoDto
             {
                 Id = c.Id,
                 Nome = c.Nome.ToString(),
@@ -36,7 +36,7 @@ namespace Contatos.Application.UseCases.Contatos
                 Ddd = c.Telefone.Ddd
             }).ToList();
 
-            _serviceCache.Set(cacheKey, contatos, TimeSpan.FromMinutes(10));
+            //_serviceCache.Set(cacheKey, contatos, TimeSpan.FromMinutes(10));
 
             return contatos;
         }

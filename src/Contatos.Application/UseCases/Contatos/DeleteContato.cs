@@ -1,5 +1,5 @@
-﻿using Contatos.Application.Interfaces;
-using Contatos.Core.Domain.Interfaces;
+﻿using Contatos.Core.Domain.Interfaces;
+using Contatos.Core.Interfaces;
 
 namespace Contatos.Application.UseCases.Contatos
 {

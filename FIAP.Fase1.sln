@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", 
 		prometheus.yml = prometheus.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Worker", "Contatos.Worker\Contatos.Worker.csproj", "{FE1030C0-ED0B-499F-9D4D-B7EC2CF936D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contatos.Message", "src\Contatos.Message\Contatos.Message.csproj", "{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,14 @@ Global
 		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{171B0DEF-8851-4DEE-BF02-F4458A8B899D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1030C0-ED0B-499F-9D4D-B7EC2CF936D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1030C0-ED0B-499F-9D4D-B7EC2CF936D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1030C0-ED0B-499F-9D4D-B7EC2CF936D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1030C0-ED0B-499F-9D4D-B7EC2CF936D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

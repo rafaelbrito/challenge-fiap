@@ -1,5 +1,7 @@
-﻿using Contatos.Application.DTOs;
-using Contatos.Application.UseCases.Contatos;
+﻿using Contatos.Application.UseCases.Contatos;
+using Contatos.Message.Messages;
+using MassTransit;
+using MassTransit.Transports;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Contatos.Api.Controllers
@@ -12,24 +14,43 @@ namespace Contatos.Api.Controllers
         private readonly GetContato _getContato;
         private readonly UpdateContato _updateContato;
         private readonly DeleteContato _deleteContato;
+        private readonly ISendEndpointProvider _publishEndpoint;
         public ContatosController(
             CreateContato createContato,
             GetContato getContato,
             UpdateContato updateContato,
-            DeleteContato deleteContato)
+            DeleteContato deleteContato,
+                    ISendEndpointProvider publishEndpoint)
         {
             _createContato = createContato;
             _getContato = getContato;
             _updateContato = updateContato;
             _deleteContato = deleteContato;
+            _publishEndpoint = publishEndpoint;
         }
 
-        // POST: api/v1/contatos
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateContatoInput input)
+        public async Task<IActionResult> Create([FromBody] CreateContatoMessage input)
         {
-            var contato = await _createContato.CreateAsync(input);
-            return CreatedAtAction(nameof(GetById), new { id = contato.Id }, contato);
+            var endpoint = await _publishEndpoint.GetSendEndpoint(new Uri("queue:CreateContato"));
+            await endpoint.Send(input);
+            return Accepted();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateContatoMessage input)
+        {
+            var endpoint = await _publishEndpoint.GetSendEndpoint(new Uri("queue:UpdateContato"));
+            await endpoint.Send(input);
+            return Accepted();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteContatoMessage input)
+        {
+            var endpoint = await _publishEndpoint.GetSendEndpoint(new Uri("queue:DeleteContato"));
+            await endpoint.Send(input);
+            return Accepted();
         }
 
         // GET: api/v1/contatos
@@ -83,33 +104,6 @@ namespace Contatos.Api.Controllers
         {
             var contatos = await _getContato.GetContatosByTelefoneAsync(telefone);
             return Ok(contatos);
-        }
-
-        // PUT: api/v1/contatos/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdateContatoInput input)
-        {
-            try
-            {
-                var contato = await _updateContato.UpdateContatoAsync(id, input);
-                return Ok(contato);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
-        }
-
-        // DELETE: api/v1/contatos/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var result = await _deleteContato.DeleteContatoAsync(id);
-            if (result)
-            {
-                return NoContent();
-            }
-            return NotFound();
         }
     }
 }

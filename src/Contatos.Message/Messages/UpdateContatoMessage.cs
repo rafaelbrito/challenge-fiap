@@ -1,6 +1,6 @@
-﻿namespace Contatos.Application.DTOs
+﻿namespace Contatos.Message.Messages
 {
-    public record UpdateContatoInput
+    public record UpdateContatoMessage
     {
         public int Id { get; set; }
         public string? Nome { get; set; }
