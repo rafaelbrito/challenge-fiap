@@ -20,7 +20,6 @@ namespace Contatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.WebHost.UseUrls("http://localhost:5039");
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -66,7 +65,7 @@ namespace Contatos.Api
             var app = builder.Build();
             app.UseHttpMetrics();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
-
+            app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI();
 

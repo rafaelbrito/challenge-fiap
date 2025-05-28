@@ -16,9 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Contatos.Application\Contatos.Application.csproj" />
-    <ProjectReference Include="..\src\Contatos.Core\Contatos.Core.csproj" />
-    <ProjectReference Include="..\src\Contatos.Infra\Contatos.Infra.csproj" />
-    <ProjectReference Include="..\src\Contatos.Message\Contatos.Message.csproj" />
+    <ProjectReference Include="..\Contatos.Application\Contatos.Application.csproj" />
+    <ProjectReference Include="..\Contatos.Core\Contatos.Core.csproj" />
+    <ProjectReference Include="..\Contatos.Infra\Contatos.Infra.csproj" />
+    <ProjectReference Include="..\Contatos.Message\Contatos.Message.csproj" />
+    <ProjectReference Include="..\Contatos.Application\Contatos.Application.csproj" />
+    <ProjectReference Include="..\Contatos.Core\Contatos.Core.csproj" />
+    <ProjectReference Include="..\Contatos.Infra\Contatos.Infra.csproj" />
+    <ProjectReference Include="..\Contatos.Message\Contatos.Message.csproj" />
   </ItemGroup>
 </Project>
