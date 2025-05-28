@@ -12,7 +12,7 @@ namespace Contatos.Worker.Consumers
             => _deleteContato = deleteContato;
         public async Task Consume(ConsumeContext<DeleteContatoMessage> context)
         {
-            try
+            try 
             {
                 await _deleteContato.DeleteContatoAsync(context.Message.Id);
             }
