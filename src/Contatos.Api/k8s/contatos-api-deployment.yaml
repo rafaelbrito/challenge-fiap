@@ -1,0 +1,32 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contatos-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contatos-api
+  template:
+    metadata:
+      labels:
+        app: contatos-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: contatos-api
+        image: contatosapi:latest
+        ports:
+        - containerPort: 8080
+        env:
+          - name: RabbitMQ__Host
+            value: rabbitmq
+          - name: RabbitMQ__Port
+            value: "5672"
+          - name: RabbitMQ__User
+            value: guest
+          - name: RabbitMQ__Password
+            value: guest

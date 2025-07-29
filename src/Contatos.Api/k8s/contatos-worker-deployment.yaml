@@ -1,0 +1,29 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contatos-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contatos-worker
+  template:
+    metadata:
+      labels:
+        app: contatos-worker
+    spec:
+      containers:
+        - name: contatos-worker
+          image: contatosworker:latest
+          imagePullPolicy: Never
+          env:
+            - name: RabbitMQ__Host
+              value: "rabbitmq"
+            - name: RabbitMQ__Port
+              value: "5672"
+            - name: RabbitMQ__User
+              value: "guest"
+            - name: RabbitMQ__Password
+              value: "guest"
+        
+

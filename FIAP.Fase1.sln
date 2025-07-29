@@ -20,12 +20,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Infra", "src\Conta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Test", "test\Contatos.Test\Contatos.Test.csproj", "{171B0DEF-8851-4DEE-BF02-F4458A8B899D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", "{9A24791A-F65F-49BA-B845-D74053B7054F}"
-	ProjectSection(SolutionItems) = preProject
-		Docker-compose.yml = Docker-compose.yml
-		prometheus.yml = prometheus.yml
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Message", "src\Contatos.Message\Contatos.Message.csproj", "{C871A65A-1214-491E-A2BD-AAA1CB90BAE3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatos.Worker", "src\Contatos.Worker\Contatos.Worker.csproj", "{68380C6B-CAA8-4B05-9D8A-6551D17A750E}"
