@@ -71,7 +71,8 @@ namespace Contatos.Api
 
             var app = builder.Build();
 
-            app.UseHttpMetrics();
+            app.UseRouting();
+
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseSwagger();
@@ -79,14 +80,12 @@ namespace Contatos.Api
 
             app.MapMetrics();
 
-            app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapMetrics();
             });
 
             app.Run();
