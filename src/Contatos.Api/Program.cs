@@ -5,13 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Contatos.Application.UseCases.Contatos;
 using Microsoft.OpenApi.Models;
 using Prometheus;
-using System.Net;
 using Contatos.Infra.Services;
 using Contatos.Core.Interfaces;
 using MassTransit;
-using Contatos.Message.Messages;
-
-
 
 namespace Contatos.Api
 {
@@ -20,6 +16,7 @@ namespace Contatos.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -48,34 +45,49 @@ namespace Contatos.Api
             builder.Services.AddTransient<DeleteContato>();
 
             builder.Services.AddDbContext<ContatosDbContext>(options =>
-                     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ContatosDbContext>();
+                context.Database.Migrate();
+            }
+
+            var rabbitMqHost = builder.Configuration["RabbitMQ:Host"] ?? "rabbitmq";
+            var rabbitMqUser = builder.Configuration["RabbitMQ:User"] ?? "guest";
+            var rabbitMqPass = builder.Configuration["RabbitMQ:Password"] ?? "guest";
 
             builder.Services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("localhost", h =>
+                    cfg.Host(rabbitMqHost, "/", h =>
                     {
-                        h.Username("guest");
-                        h.Password("guest");
+                        h.Username(rabbitMqUser);
+                        h.Password(rabbitMqPass);
                     });
                 });
             });
 
             var app = builder.Build();
+
             app.UseHttpMetrics();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            app.UseRouting();
             app.MapMetrics();
+
+            app.UseRouting();
 
             app.UseAuthorization();
 
-
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapMetrics();
+            });
 
             app.Run();
         }
